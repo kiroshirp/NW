@@ -30,6 +30,8 @@ jobs:
       - run: npm install -g pnpm@11.7.0
       - run: pnpm install --frozen-lockfile --ignore-scripts
         working-directory: app
+      - run: node scripts/nw/localize.mjs
+        working-directory: app
       - run: pnpm --filter @openreel/web build
         working-directory: app
       - uses: actions/configure-pages@v5
