@@ -1,0 +1,40 @@
+name: Publish NW Studio
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: true
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: Augani/openreel-video
+          ref: 367d7e90b61b5181f9861b852bb8b9d7a7d2954a
+          path: app
+      - run: cp -a overrides/. app/
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - run: npm install -g pnpm@11.7.0
+      - run: pnpm install --frozen-lockfile --ignore-scripts
+        working-directory: app
+      - run: pnpm --filter @openreel/web build
+        working-directory: app
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: app/apps/web/dist
+      - uses: actions/deploy-pages@v4
+        id: deploy

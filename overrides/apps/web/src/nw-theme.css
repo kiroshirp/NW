@@ -1,0 +1,37 @@
+/* NW visual identity: charcoal surfaces, warm ivory actions, tactile edges. */
+:root, .dark, [data-theme="dark"] {
+ --bg:#101112; --bg-1:#191a1d; --bg-2:#212226; --bg-3:#292a2e;
+ --bg-elev:#232428; --border:#333438; --border-strong:#545559;
+ --fg:#f5f5f2; --fg-2:#bcbcc2; --fg-3:#94959d; --fg-muted:#82838b;
+ --hover:#2b2c30; --selected:#363737;
+ --accent:#efefeb; --accent-strong:#ffffff; --accent-soft:#efefeb18;
+ --accent-fg:#111213; --accent-glow:#ffffff20;
+ --stage-bg:#0c0d0e; --screen-bg:#000; --track-bg:#151619; --tl-bg:#111214;
+ --waveform:#b9bcb6;
+ --shadow-sm:0 2px 0 #050506; --shadow-md:inset 0 1px 0 #ffffff0a,0 5px 0 #090a0b,0 12px 24px #0003;
+ --shadow-lg:inset 0 1px 0 #ffffff10,0 7px 0 #090a0b,0 24px 60px #0006;
+ --background:220 6% 6%; --foreground:60 12% 96%; --card:225 7% 11%;
+ --card-foreground:60 12% 96%; --popover:225 7% 13%; --popover-foreground:60 12% 96%;
+ --primary:60 11% 93%; --primary-foreground:220 6% 7%;
+ --secondary:228 7% 14%; --secondary-foreground:60 12% 96%;
+ --muted:228 7% 14%; --muted-foreground:235 6% 66%;
+ --input:228 5% 25%; --ring:60 11% 93%; --radius:0.875rem;
+}
+[data-astryx-theme="neutral"] {
+ --color-accent:#efefeb; --color-accent-muted:#353638;
+ --color-text-accent:#efefeb; --color-icon-accent:#efefeb; --color-on-accent:#111213;
+}
+.nw-button:not(:disabled) {
+ border:1px solid #090a0b; border-radius:12px;
+ box-shadow:inset 0 1px 0 #ffffff14,0 3px 0 #08090a;
+ transition:box-shadow 120ms ease, background-color 120ms ease, translate 120ms ease;
+}
+.nw-button:not(:disabled):active {translate:0 2px;box-shadow:inset 0 1px 0 #ffffff10,0 1px 0 #08090a;}
+.nw-button:focus-visible {outline:2px solid var(--accent);outline-offset:4px;}
+.nw-welcome {background:radial-gradient(ellipse at 50% 0%,#32333755,transparent 65%),#101112;}
+.nw-welcome > .absolute {opacity:0;}
+.nw-welcome .max-w-3xl {background:#191a1df5;border:1px solid #37383c;border-radius:28px;padding:36px;box-shadow:var(--shadow-lg);}
+.nw-welcome .rounded-2xl {box-shadow:inset 0 1px 0 #ffffff0a,0 5px 0 #090a0b;}
+.nw-welcome .bg-gradient-to-br {background-image:linear-gradient(140deg,#ffffff12,transparent);}
+@media(max-width:640px){.nw-welcome .max-w-3xl{padding:20px;}.nw-welcome .grid-cols-3{gap:8px;}.nw-welcome .p-6{padding:12px;}}
+@media(prefers-reduced-motion:reduce){.nw-button{transition:none;}}
