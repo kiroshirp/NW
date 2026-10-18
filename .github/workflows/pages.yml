@@ -34,6 +34,14 @@ jobs:
         working-directory: app
       - run: pnpm --filter @openreel/web build
         working-directory: app
+      - name: Create direct route entry points
+        working-directory: app/apps/web/dist
+        run: |
+          for route in editor new templates recent share motion welcome; do
+            mkdir -p "$route"
+            cp index.html "$route/index.html"
+          done
+          cp index.html 404.html
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
