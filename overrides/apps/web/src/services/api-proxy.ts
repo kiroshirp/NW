@@ -60,6 +60,9 @@ export function normalizeCompatibleBaseUrl(input: string): string {
   if (url.protocol !== "http:" && url.protocol !== "https:") {
     throw new Error("The compatible endpoint must use http:// or https://.");
   }
+  if (url.protocol === "http:" && !["localhost", "127.0.0.1", "[::1]"].includes(url.hostname)) {
+    throw new Error("Usa HTTPS para proteger tu clave de API. HTTP solo está permitido en localhost.");
+  }
   if (url.username || url.password) {
     throw new Error("Put credentials in the API key field, not in the endpoint URL.");
   }
@@ -144,6 +147,8 @@ export async function apiFetch(
     }
     return fetch(`${normalizedBaseUrl}${path}`, {
       ...requestOptions,
+      credentials: "omit",
+      redirect: "error",
       headers: {
         ...safeHeaders,
         ...authHeaders,
